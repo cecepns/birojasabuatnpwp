@@ -34,6 +34,21 @@ CREATE TABLE IF NOT EXISTS contact_messages (
   INDEX idx_created_at (created_at)
 ) ENGINE=InnoDB;
 
+-- Admin users table
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(150) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  role ENUM('admin') DEFAULT 'admin',
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- Default admin: admin@birojasabuatnpwp.com / admin123
+INSERT INTO users (name, email, password) VALUES
+('Admin', 'admin@birojasabuatnpwp.com', '$2b$10$REK5oW9pFXvY7u.C8K9F0eogy8pZNMWBuvBNBZ2G0e15FykPrf1gC')
+ON DUPLICATE KEY UPDATE email = email;
+
 -- Sample articles
 INSERT INTO articles (title, slug, excerpt, content, category, author, published_at) VALUES
 (

@@ -15,6 +15,11 @@ export const put = async (url, data = {}) => {
   return response.data;
 };
 
+export const patch = async (url, data = {}) => {
+  const response = await api.patch(url, data);
+  return response.data;
+};
+
 export const del = async (url) => {
   const response = await api.delete(url);
   return response.data;
