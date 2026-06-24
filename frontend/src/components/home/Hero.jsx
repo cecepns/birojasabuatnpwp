@@ -36,7 +36,8 @@ export default function Hero() {
 
             <p className="mt-6 text-lg md:text-xl text-blue-100/80 leading-relaxed max-w-xl">
               Urus perizinan pajak dan legalitas usaha Anda tanpa ribet. Proses
-              online, harga transparan, didampingi tim profesional berpengalaman.
+              online, harga transparan, pembayaran bisa setelah selesai, didampingi
+              tim profesional berpengalaman.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
@@ -66,7 +67,7 @@ export default function Hero() {
 
           <div className="order-3 lg:order-3 lg:col-start-1 lg:row-start-2 mt-0 lg:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
-              { icon: Clock, label: 'Proses 1-3 Hari Kerja' },
+              { icon: Clock, label: 'Proses Cepat' },
               { icon: Shield, label: '100% Legal & Aman' },
               { icon: CheckCircle2, label: '500+ Klien Puas' },
             ].map(({ icon: Icon, label }) => (
