@@ -7,9 +7,11 @@ import { SITE_CONFIG } from '@/utils/constants';
 export default function Services({ pageTop = false }) {
   return (
     <section
-      className={`${pageTop ? 'pb-16 md:pb-24' : 'section-padding'} bg-slate-50`}
+      className={`${
+        pageTop ? 'pt-24 pb-16 md:pb-24' : 'section-padding'
+      } bg-slate-50`}
     >
-      <div className="container-main">
+      <div className={`container-main ${pageTop ? 'pt-6 md:pt-8' : ''}`}>
         <SectionTitle
           badge="Layanan Kami"
           title="Paket Layanan & Harga"

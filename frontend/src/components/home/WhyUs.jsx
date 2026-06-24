@@ -30,8 +30,8 @@ const FEATURES = [
 
 export default function WhyUs({ pageTop = false }) {
   return (
-    <section className={pageTop ? 'pb-16 md:pb-24' : 'section-padding'}>
-      <div className="container-main">
+    <section className={pageTop ? 'pt-24 pb-16 md:pb-24' : 'section-padding'}>
+      <div className={`container-main ${pageTop ? 'pt-6 md:pt-8' : ''}`}>
         <SectionTitle
           badge="Mengapa Kami"
           title="Partner Terpercaya untuk Legalitas Usaha Anda"

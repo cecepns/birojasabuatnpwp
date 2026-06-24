@@ -62,9 +62,11 @@ export default function FAQ({ pageTop = false }) {
 
   return (
     <section
-      className={`${pageTop ? 'pb-16 md:pb-24' : 'section-padding'} bg-slate-50`}
+      className={`${
+        pageTop ? 'pt-24 pb-16 md:pb-24' : 'section-padding'
+      } bg-slate-50`}
     >
-      <div className="container-main">
+      <div className={`container-main ${pageTop ? 'pt-6 md:pt-8' : ''}`}>
         <SectionTitle
           badge="FAQ"
           title="Pertanyaan yang Sering Diajukan"

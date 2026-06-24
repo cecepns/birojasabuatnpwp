@@ -48,8 +48,8 @@ export default function BlogPage() {
   const pages = Array.from({ length: pagination.totalPages }, (_, i) => i + 1);
 
   return (
-    <div className="pt-24 md:pt-28 pb-16">
-      <div className="container-main">
+    <div className="pt-24 pb-16">
+      <div className="container-main pt-6 md:pt-8">
         <SectionTitle
           badge="Blog & Artikel"
           title="Tips & Informasi Seputar NPWP"
