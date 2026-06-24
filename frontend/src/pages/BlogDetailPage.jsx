@@ -54,19 +54,21 @@ export default function BlogDetailPage() {
   return (
     <article className="pt-24 md:pt-28 pb-16">
       <div className="container-main max-w-3xl">
-        <Link
-          to="/blog"
-          className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-brand-600 mb-8 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Kembali ke Blog
-        </Link>
+        <div className="flex items-center justify-between gap-4 mb-8">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-brand-600 transition-colors shrink-0"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Kembali ke Blog
+          </Link>
 
-        {article.category && (
-          <span className="inline-block px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-semibold mb-4">
-            {article.category}
-          </span>
-        )}
+          {article.category && (
+            <span className="inline-block px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-semibold shrink-0">
+              {article.category}
+            </span>
+          )}
+        </div>
 
         <h1 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight mb-4">
           {article.title}
