@@ -1,0 +1,18 @@
+{
+  "name": "Biro Jasa Buat NPWP",
+  "short_name": "Biro NPWP",
+  "description": "Jasa pembuatan NPWP, NIB, dan PT Perorangan cepat & terpercaya",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e40af",
+  "lang": "id",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
