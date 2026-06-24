@@ -4,6 +4,8 @@ import toast from 'react-hot-toast';
 import { useDebounce } from '@/hooks/useDebounce';
 import Modal from '@/components/admin/Modal';
 import Pagination from '@/components/admin/Pagination';
+import RichTextEditor from '@/components/admin/RichTextEditor';
+import { isEditorContentEmpty } from '@/utils/editor';
 import {
   fetchAdminArticles,
   fetchAdminArticle,
@@ -87,7 +89,7 @@ export default function AdminArticlesPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.title.trim() || !form.content.trim()) {
+    if (!form.title.trim() || isEditorContentEmpty(form.content)) {
       toast.error('Judul dan konten wajib diisi');
       return;
     }
@@ -330,12 +332,10 @@ export default function AdminArticlesPage() {
               />
             </div>
             <div className="sm:col-span-2">
-              <label className="block text-sm font-medium text-slate-700 mb-1">Konten (HTML) *</label>
-              <textarea
+              <label className="block text-sm font-medium text-slate-700 mb-1">Konten *</label>
+              <RichTextEditor
                 value={form.content}
-                onChange={(e) => setForm({ ...form, content: e.target.value })}
-                rows={8}
-                className={inputClass}
+                onChange={(content) => setForm({ ...form, content })}
               />
             </div>
           </div>
