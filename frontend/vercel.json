@@ -9,5 +9,10 @@
       "headers": [{ "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }]
     }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    {
+      "source": "/((?!assets|logo\\.png|sitemap\\.xml|robots\\.txt|manifest\\.webmanifest|sw\\.js|favicon\\.svg).*)",
+      "destination": "/index.html"
+    }
+  ]
 }

@@ -21,13 +21,21 @@ const pool = mysql.createPool({
   connectionLimit: 10,
 });
 
-const sanitize = (str) => {
+const sanitizeText = (str) => {
   if (typeof str !== 'string') return '';
   return str.trim().replace(/[<>]/g, '');
 };
 
+// HTML dari React Quill — cukup trim, jangan hapus tag (field DB sudah LONGTEXT)
+const normalizeContent = (html) => (typeof html === 'string' ? html.trim() : '');
+
+const isContentEmpty = (html) =>
+  !normalizeContent(html).replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim();
+
+const sanitize = sanitizeText;
+
 const slugify = (text) =>
-  sanitize(text)
+  sanitizeText(text)
     .toLowerCase()
     .replace(/[^a-z0-9\s-]/g, '')
     .replace(/\s+/g, '-')
@@ -297,16 +305,16 @@ app.get('/api/admin/articles/:id', authMiddleware, async (req, res) => {
 // POST /api/admin/articles
 app.post('/api/admin/articles', authMiddleware, async (req, res) => {
   try {
-    const title = sanitize(req.body.title);
-    const excerpt = sanitize(req.body.excerpt || '');
-    const content = sanitize(req.body.content || '');
-    const category = sanitize(req.body.category || '');
-    const author = sanitize(req.body.author || 'Admin');
+    const title = sanitizeText(req.body.title);
+    const excerpt = sanitizeText(req.body.excerpt || '');
+    const content = normalizeContent(req.body.content);
+    const category = sanitizeText(req.body.category || '');
+    const author = sanitizeText(req.body.author || 'Admin');
     const status = req.body.status === 'draft' ? 'draft' : 'published';
-    const image_url = sanitize(req.body.image_url || '') || null;
+    const image_url = sanitizeText(req.body.image_url || '') || null;
     let slug = slugify(req.body.slug || title);
 
-    if (!title || !content) {
+    if (!title || isContentEmpty(content)) {
       return res.status(400).json({ success: false, message: 'Judul dan konten wajib diisi' });
     }
 
@@ -334,16 +342,16 @@ app.post('/api/admin/articles', authMiddleware, async (req, res) => {
 app.put('/api/admin/articles/:id', authMiddleware, async (req, res) => {
   try {
     const id = parseInt(req.params.id, 10);
-    const title = sanitize(req.body.title);
-    const excerpt = sanitize(req.body.excerpt || '');
-    const content = sanitize(req.body.content || '');
-    const category = sanitize(req.body.category || '');
-    const author = sanitize(req.body.author || 'Admin');
+    const title = sanitizeText(req.body.title);
+    const excerpt = sanitizeText(req.body.excerpt || '');
+    const content = normalizeContent(req.body.content);
+    const category = sanitizeText(req.body.category || '');
+    const author = sanitizeText(req.body.author || 'Admin');
     const status = req.body.status === 'draft' ? 'draft' : 'published';
-    const image_url = sanitize(req.body.image_url || '') || null;
+    const image_url = sanitizeText(req.body.image_url || '') || null;
     const slug = slugify(req.body.slug || title);
 
-    if (!title || !content) {
+    if (!title || isContentEmpty(content)) {
       return res.status(400).json({ success: false, message: 'Judul dan konten wajib diisi' });
     }
 
